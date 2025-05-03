@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ransomware Attack Simulation | UNT Cybersecurity Research</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="hero">
+        <h1>Ransomware Attack Simulation</h1>
+        <p class="subtitle">A Virtualized Environment Approach</p>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#findings">Findings</a></li>
+            <li><a href="#code">Code Samples</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="abstract" class="card">
+            <h2>Abstract</h2>
+            <p>This project simulates ransomware attacks in controlled virtual environments to analyze attack lifecycles and test defense strategies. Our implementation includes:</p>
+            <ul>
+                <li>Custom Python/Bash ransomware payload</li>
+                <li>Virtual lab with AttackerVM (192.168.56.10) and VictimVM (192.168.56.20)</li>
+                <li>Hybrid encryption (AES-256-CBC) implementation</li>
+                <li>Honeypot detection systems</li>
+                <li>Automated mitigation protocols</li>
+            </ul>
+            <a href="research/report.pdf" class="btn">Download Full Report</a>
+        </section>
+
+        <section id="methodology" class="card">
+            <h2>Methodology</h2>
+            <div class="grid">
+                <div class="method-step">
+                    <h3>1. Virtual Lab Setup</h3>
+                    <p>Configured two Ubuntu 22.04 VMs with intentionally vulnerable settings on VictimVM</p>
+                    <img src="assets/img/lab-diagram.png" alt="Lab setup diagram">
+                </div>
+                <div class="method-step">
+                    <h3>2. Attack Simulation</h3>
+                    <p>Phishing → Payload delivery → Encryption → Extortion workflow</p>
+                    <pre><code># Sample from encryption module
+openssl enc -aes-256-cbc -salt -in $file \
+-out ${file}.encrypted -pass pass:$PASSWORD</code></pre>
+                </div>
+                <div class="method-step">
+                    <h3>3. Detection Systems</h3>
+                    <p>Implemented honeypot files and extension monitoring</p>
+                    <pre><code>auditctl -w "/critical" -p rwxa -k critical_watch</code></pre>
+                </div>
+                <div class="method-step">
+                    <h3>4. Mitigation</h3>
+                    <p>Directory lockdowns and automated backups</p>
+                    <pre><code>chattr -R +i ./critical  # Immutable flag</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="findings" class="card">
+            <h2>Key Findings</h2>
+            <div class="finding">
+                <h3>Attack Patterns</h3>
+                <p>78% of simulated attacks originated from malicious email vectors</p>
+            </div>
+            <div class="finding">
+                <h3>Encryption Analysis</h3>
+                <p>AES-256 + RSA hybrid encryption proved most effective in our tests</p>
+            </div>
+            <div class="finding">
+                <h3>Detection Efficacy</h3>
+                <p>Honeypot traps triggered alerts within 2.3 seconds of compromise</p>
+            </div>
+            <div class="finding">
+                <h3>Mitigation Success</h3>
+                <p>Immutable directory flags prevented 100% of subsequent file modifications</p>
+            </div>
+        </section>
+
+        <section id="code" class="card">
+            <h2>Code Implementation</h2>
+            <div class="code-sample">
+                <h3>Encryption Module</h3>
+                <pre><code># Configuration
+PASSWORD=$(openssl rand -hex 32)
+TARGET_DIRS=("/c/critical" "/c/another_directory")
+RANSOM_NOTE="/c/README_DECRYPT.txt"
+C2_SERVER="http://192.168.56.15:8080"</code></pre>
+                <a href="code/encryption_module/ransomware.sh" class="btn">View Full Script</a>
+            </div>
+            <div class="code-sample">
+                <h3>Monitoring Component</h3>
+                <pre><code>class MonitorHandler(FilesystemEventHandler):
+    def on_modified(self, event):
+        if ".encrypted" in event.src_path:
+            alert("Ransomware activity detected!")</code></pre>
+                <a href="code/monitoring_component/monitor.py" class="btn">View Detection Code</a>
+            </div>
+        </section>
+
+        <section id="team" class="card">
+            <h2>Research Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Tasmaiya Tamboli</h3>
+                    <p>tasmaiyatamboli@my.unt.edu</p>
+                </div>
+                <div class="team-member">
+                    <h3>Ujjwal Rana Magar</h3>
+                    <p>UjjwalRanaMagar@my.unt.edu</p>
+                </div>
+                <div class="team-member">
+                    <h3>Kaylyn King</h3>
+                    <p>KaylynKing@my.unt.edu</p>
+                </div>
+                <div class="team-member">
+                    <h3>Jean-Charles Hekamanu</h3>
+                    <p>Jean-CharlesHekamanu@my.unt.edu</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Cybersecurity Research Project | University of North Texas | 2025</p>
+    </footer>
+
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>
