@@ -1,6 +1,6 @@
 # Ransomware Attack Simulation Project
 
-![Project Banner](assets/img/infection DFD.png)
+![Project Banner](assets/img/infectionDFD.png)
 
 A virtualized environment approach to studying and mitigating ransomware attacks.
 
