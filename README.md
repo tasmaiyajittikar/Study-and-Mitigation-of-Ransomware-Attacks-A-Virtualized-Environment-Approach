@@ -42,7 +42,7 @@ python3 monitor.sh
 - **Mitigation Protocols**: Directory lockdowns and backups
 
 ## Live Demo
-View the project website: [https://yourusername.github.io/ransomware-simulation-project](https://yourusername.github.io/ransomware-simulation-project)
+View the project website: 
 
 ## Research Team
 - Tasmaiya Tamboli
