@@ -9,6 +9,50 @@ This research simulates ransomware attacks in controlled environments to:
 - Analyze attack vectors and patterns
 - Test detection methodologies
 - Develop effective mitigation strategies
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Key Components](#key-components)
+- [Setup Instructions](#setup-instructions)
+- [Execution Workflow](#execution-workflow)
+- [Detection & Mitigation Strategies](#detection--mitigation-strategies)
+- [Future Enhancements](#future-enhancements)
+- [Team](#team)
+
+## Project Overview
+This project simulates a ransomware attack in a controlled virtualized environment to:
+- Demonstrate ransomware mechanics (AES-256 encryption, phishing vectors)
+- Test detection methods (honeypots, file monitoring)
+- Implement mitigation strategies (directory lockdowns, automated backups)
+
+**Scenario**:  
+An employee receives a phishing email from "Amazon Careers" with a link to a fake job portal. Upon downloading the "offer letter", a ransomware payload encrypts files in the `critical` directory.
+
+## Key Components
+
+### 1. Attack Simulation
+| Component          | Technology Used          |
+|--------------------|-------------------------|
+| Phishing Email     | Python SMTP             |
+| Fake Job Portal    | Flask (AWS EC2)         |
+| Ransomware Payload | OpenSSL AES-256-CBC     |
+| C2 Communication   | HTTP POST to 192.168.56.15 |
+
+### 2. Defense System
+| Component          | Technology Used          |
+|--------------------|-------------------------|
+| Real-Time Monitoring | Python `watchdog`      |
+| Honeypot           | Read-only bait file     |
+| Directory Lockdown | `chattr +i` command    |
+| Automated Backups  | `shutil.copytree`      |
+
+## Setup Instructions
+
+### Prerequisites
+- VMware/VirtualBox with:
+  - Attacker VM (Ubuntu 22.04, IP: 192.168.56.10)
+  - Victim VM (Windows/Ubuntu, IP: 192.168.56.20)
+- AWS EC2 instance (for job portal)
+- Python 3.x, OpenSSL, Flask
 
 
 ## FILES
